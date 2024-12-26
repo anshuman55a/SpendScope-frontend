@@ -23,7 +23,7 @@ const Register = () => {
       return;
     }
     try {
-      const response = await axios.post('http://localhost:5000/register', {
+      const response = await axios.post('https://spendscope-backend.onrender.com/register', {
         username: formData.username,
         email: formData.email,
         password: formData.password

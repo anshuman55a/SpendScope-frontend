@@ -33,7 +33,7 @@ const AddEntry = () => {
     const token = localStorage.getItem('token');
 
     try {
-      await axios.post('http://localhost:5000/entries', entry, {
+      await axios.post('https://spendscope-backend.onrender.com/entries', entry, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -16,7 +16,7 @@ const EntryList = () => {
   const fetchEntries = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/entries', {
+      const response = await axios.get('https://spendscope-backend.onrender.com/entries', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -33,7 +33,7 @@ const EntryList = () => {
     if (window.confirm('Are you sure you want to delete this entry?')) {
       try {
         const token = localStorage.getItem('token');
-        await axios.delete(`http://localhost:5000/entries/${id}`, {
+        await axios.delete(`https://spendscope-backend.onrender.com/entries/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

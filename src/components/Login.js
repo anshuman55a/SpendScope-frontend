@@ -15,7 +15,7 @@ const Login = ({ onLogin }) => {
     e.preventDefault();
     console.log('Logging in with:', credentials);
 
-    axios.post('http://localhost:5000/login', credentials)
+    axios.post('https://spendscope-backend.onrender.com/login', credentials)
       .then(response => {
         const { access_token } = response.data;
         onLogin(access_token, credentials.username);

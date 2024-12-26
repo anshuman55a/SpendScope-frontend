@@ -22,7 +22,7 @@ const EditEntry = () => {
       return;
     }
 
-    axios.get(`http://localhost:5000/entries/${id}`, {
+    axios.get(`https://spendscope-backend.onrender.com/entries/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -47,7 +47,7 @@ const EditEntry = () => {
       return;
     }
 
-    axios.put(`http://localhost:5000/entries/${id}`, entry, {
+    axios.put(`https://spendscope-backend.onrender.com/entries/${id}`, entry, {
       headers: {
         Authorization: `Bearer ${token}`
       }
