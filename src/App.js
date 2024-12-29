@@ -53,6 +53,27 @@ function App() {
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
           <Route path="/register" element={<Register />} />
         </Routes>
+        <footer style={{
+          position: 'fixed',
+          bottom: 0,
+          width: '100%',
+          textAlign: 'center',
+          padding: '1px',
+          backgroundColor: '#f8f9fa',
+          borderTop: '1px solid #dee2e6'
+        }}>
+          <a 
+            href="https://www.linkedin.com/in/anshuman55a/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            style={{ 
+              textDecoration: 'none', 
+              color: '#6c757d'
+            }}
+          >
+            Developed by Anshuman Singh © 2024
+          </a>
+        </footer>
       </div>
     </Router>
   );
