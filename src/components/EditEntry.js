@@ -1,37 +1,38 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate, useParams } from "react-router-dom";
 
 const EditEntry = () => {
   const { id } = useParams();
   const [entry, setEntry] = useState({
-    user_id: '',
-    date: '',
-    amount: '',
-    category: '',
-    description: '',
-    type: 'income'
+    user_id: "",
+    date: "",
+    amount: "",
+    category: "",
+    description: "",
+    type: "income",
   });
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (!token) {
-      setError('Unauthorized access');
+      setError("Unauthorized access");
       return;
     }
 
-    axios.get(`https://spendscope-backend.onrender.com/entries/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
-      .then(response => {
+    axios
+      .get(`https://spendscope-backend-1.onrender.com/entries/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
         setEntry(response.data);
       })
       .catch(() => {
-        setError('Failed to fetch entry details');
+        setError("Failed to fetch entry details");
       });
   }, [id]);
 
@@ -41,22 +42,23 @@ const EditEntry = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (!token) {
-      setError('Unauthorized access');
+      setError("Unauthorized access");
       return;
     }
 
-    axios.put(`https://spendscope-backend.onrender.com/entries/${id}`, entry, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
+    axios
+      .put(`https://spendscope-backend-1.onrender.com/entries/${id}`, entry, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then(() => {
-        navigate('/entries');
+        navigate("/entries");
       })
       .catch(() => {
-        setError('Failed to update entry');
+        setError("Failed to update entry");
       });
   };
 
@@ -71,7 +73,9 @@ const EditEntry = () => {
       <div className="bg-white shadow rounded-lg p-6">
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700">User ID</label>
+            <label className="block text-sm font-medium text-gray-700">
+              User ID
+            </label>
             <input
               type="text"
               name="user_id"
@@ -80,13 +84,15 @@ const EditEntry = () => {
               className="mt-1 block w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             />
           </div>
-          
+
           <div>
-            <label className="block text-sm font-medium text-gray-700">Date</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Date
+            </label>
             <input
               type="date"
               name="date"
-              value={entry.date.split('T')[0]}
+              value={entry.date.split("T")[0]}
               onChange={handleChange}
               required
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -94,7 +100,9 @@ const EditEntry = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">Amount</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Amount
+            </label>
             <input
               type="number"
               name="amount"
@@ -107,7 +115,9 @@ const EditEntry = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">Category</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Category
+            </label>
             <input
               type="text"
               name="category"
@@ -120,7 +130,9 @@ const EditEntry = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">Description</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Description
+            </label>
             <input
               type="text"
               name="description"
@@ -132,7 +144,9 @@ const EditEntry = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">Type</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Type
+            </label>
             <select
               name="type"
               value={entry.type}

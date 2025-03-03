@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const AddEntry = () => {
   const [entry, setEntry] = useState({
-    user_id: '',
-    date: '',
-    amount: '',
-    category: '',
-    description: '',
-    type: 'expense',
+    user_id: "",
+    date: "",
+    amount: "",
+    category: "",
+    description: "",
+    type: "expense",
   });
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
-    const username = localStorage.getItem('username');
+    const username = localStorage.getItem("username");
     const currentDate = new Date().toISOString().slice(0, 10);
     setEntry((prevEntry) => ({
       ...prevEntry,
@@ -30,17 +30,21 @@ const AddEntry = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
 
     try {
-      await axios.post('https://spendscope-backend.onrender.com/entries', entry, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      navigate('/');
+      await axios.post(
+        "https://spendscope-backend-1.onrender.com/entries",
+        entry,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      navigate("/");
     } catch (error) {
-      setError('Failed to add entry');
+      setError("Failed to add entry");
     }
   };
 
@@ -48,7 +52,9 @@ const AddEntry = () => {
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-xl mx-auto">
         <div className="text-center">
-          <h1 className="text-3xl font-extrabold text-gray-900">Add Financial Entry</h1>
+          <h1 className="text-3xl font-extrabold text-gray-900">
+            Add Financial Entry
+          </h1>
           <p className="mt-2 text-sm text-gray-600">
             Record your income or expense
           </p>
@@ -58,8 +64,16 @@ const AddEntry = () => {
           <div className="mt-4 bg-red-50 border-l-4 border-red-400 p-4">
             <div className="flex">
               <div className="flex-shrink-0">
-                <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                <svg
+                  className="h-5 w-5 text-red-400"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                    clipRule="evenodd"
+                  />
                 </svg>
               </div>
               <div className="ml-3">
@@ -72,7 +86,10 @@ const AddEntry = () => {
         <div className="mt-8 bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
-              <label htmlFor="date" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="date"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Date
               </label>
               <div className="mt-1">
@@ -89,7 +106,10 @@ const AddEntry = () => {
             </div>
 
             <div>
-              <label htmlFor="amount" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="amount"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Amount
               </label>
               <div className="mt-1 relative rounded-md shadow-sm">
@@ -110,7 +130,10 @@ const AddEntry = () => {
             </div>
 
             <div>
-              <label htmlFor="category" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="category"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Category
               </label>
               <div className="mt-1">
@@ -128,7 +151,10 @@ const AddEntry = () => {
             </div>
 
             <div>
-              <label htmlFor="description" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="description"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Description
               </label>
               <div className="mt-1">
@@ -145,7 +171,10 @@ const AddEntry = () => {
             </div>
 
             <div>
-              <label htmlFor="type" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="type"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Type
               </label>
               <select
